@@ -1,0 +1,123 @@
+<div class="card">
+  <div class="card-body">
+    <div class="row">
+      <form [formGroup]="userModel" class="row col-8 g-3">
+        <div class="col-md-6">
+          <label for="inputName" class="form-label">Nombre</label>
+          <input formControlName="name" type="text" class="form-control" id="inputName" 
+          [class.is-invalid]="nameControl.touched && nameControl.invalid"
+          placeholder="Juan Carlos"/>
+          <div class="invalid-feedback">
+            El campo no cumple los requisitos
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="inputSurname" class="form-label">Apellido</label>
+          <input formControlName="surname" type="text" class="form-control" id="inputSurname" 
+          [class.is-invalid]="surnameControl.touched && surnameControl.invalid"
+          placeholder="Perez"/>
+          <div class="invalid-feedback">
+            El campo no cumple los requisitos
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="inputEmail" class="form-label">Email</label>
+          <input
+            formControlName="email"
+            type="email"
+            class="form-control"
+            id="inputEmail"
+            [class.is-invalid]="emailControl.touched && emailControl.invalid"
+            placeholder="jcperez@email.com"
+          />
+          <div class="invalid-feedback">
+            El campo no cumple los requisitos
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="inputPassword" class="form-label">Password</label>
+          <input formControlName="password" type="password" class="form-control" id="inputPassword" 
+          [class.is-invalid]="passwordControl.touched && passwordControl.invalid"
+          placeholder="**********"/>
+          <div class="invalid-feedback">
+            El campo no cumple los requisitos
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="inputPhone" class="form-label">Telefono</label>
+          <input formControlName="phone" type="text" class="form-control" id="inputPhone" 
+          [class.is-invalid]="phoneControl.touched && phoneControl.invalid"
+          placeholder="1234-5678"/>
+          <div class="invalid-feedback">
+            El campo no cumple los requisitos
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="inputCity" class="form-label">Ciudad</label>
+          <input
+            formControlName="city"
+            type="text"
+            class="form-control"
+            [class.is-invalid]="cityControl.touched && cityControl.invalid"
+            id="inputCity"
+            placeholder="Lujan"
+          />
+          <div class="invalid-feedback">
+            El campo no cumple los requisitos
+          </div>
+        </div>
+        <div class="col-md-4">
+          <label for="inputState" class="form-label">Estado</label>
+          <select id="inputState" class="form-select" formControlName="state" name="states">
+            <option selected>Elegir Estado...</option>
+            <option>Buenos Aires</option>
+            <option>Cordoba</option>
+            <option>Mendoza</option>
+          </select>
+        </div>
+        <div class="col-md-2">
+          <label for="inputZip" class="form-label">Codigo Postal</label>
+          <input type="text" class="form-control" id="inputZip" 
+          [class.is-invalid]="zipControl.touched && zipControl.invalid"
+          placeholder="1234B"
+          formControlName="zip"/>
+          <div class="invalid-feedback">
+            El campo no cumple los requisitos
+          </div>
+        </div>
+        <div class="col-12">
+          <div class="mb-3">
+            <label for="inputAddress" class="form-label">Direcciones</label>
+            <div
+              *ngFor="let addressFormGroup of addresesFormArray.controls; let i = index"
+              class="input-group mb-3"
+            >
+              <ng-container [formGroup]="addressFormGroup">
+                <input
+                  formControlName="address"
+                  type="text"
+                  class="form-control"
+                  id="inputAddress"
+                  placeholder="Calle Falsa 123"
+                  [class.is-invalid]="addressFormGroup.touched && addressFormGroup.invalid"
+                />
+              <button *ngIf="i > 0" (click)="deleteFormGroupFromAddressesFormArray(i)" class="btn btn-danger" type="button" id="button-addon2">X</button>
+              <div class="invalid-feedback">
+                El campo no cumple los requisitos
+              </div>
+              </ng-container>
+            </div>
+          </div>
+          <div class="d-grid gap-2">
+            <button (click)="addAddressControl()" class="btn btn-primary" type="button">
+              Agregar dirección
+            </button>
+          </div>
+        </div>
+        <div class="col-12">
+          <button type="button" class="btn btn-primary" (click)="login()">Sign in</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
